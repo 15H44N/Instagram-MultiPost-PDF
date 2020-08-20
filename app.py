@@ -4,9 +4,9 @@ import json
 from createfile import *
 from flask import Flask, request, abort, jsonify, send_from_directory
 
-api = Flask(__name__)
+app = Flask(__name__)
 
-@api.route("/instapost", methods=["GET"])
+@app.route("/instapost", methods=["GET"])
 def get_pdf_post():
     scode = request.args.get('scode')
     fname = request.args.get('fname')
@@ -37,4 +37,4 @@ def get_pdf_post():
     
 
 if __name__ == "__main__":
-    api.run(debug=True, port=8000)
+    app.run(debug=True, port=8000)

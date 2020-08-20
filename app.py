@@ -6,6 +6,10 @@ from flask import Flask, request, abort, jsonify, send_from_directory
 
 app = Flask(__name__)
 
+@app.route("/")
+def landing():
+    return "Hello World"
+    
 @app.route("/instapost", methods=["GET"])
 def get_pdf_post():
     scode = request.args.get('scode')
@@ -37,5 +41,5 @@ def get_pdf_post():
     
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8000)
+    app.run(debug=True)
     #app.run()

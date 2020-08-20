@@ -15,14 +15,13 @@ def get_pdf_post():
     url = request.args.get('PostURL')
     #scode = request.args.get('Post SCode')
     fname = request.args.get('FileName')
-    
     after_p = url[url.find("/p/")+len("/p/"):]
     scode = after_p.split("/")[0]
-    
     with open('old_data.json') as json_file: 
         old_data = json.load(json_file)
     
     old_fname = old_data['old_fname']
+    
     try:
         os.remove("./"+old_fname)
     except:
@@ -33,6 +32,7 @@ def get_pdf_post():
         'fname':fname
     }
     #scode = 'CEEOLKNnNUU'
+    
     file_out = createPDFandRemove(v_dict)
     
     old_data['old_fname'] = file_out

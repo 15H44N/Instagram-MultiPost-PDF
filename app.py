@@ -3,9 +3,8 @@ import io
 import json
 from createfile import *
 from flask import Flask, request, abort, jsonify, send_from_directory
+
 api = Flask(__name__)
-
-
 
 @api.route("/instapost", methods=["GET"])
 def get_pdf_post():

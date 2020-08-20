@@ -2,18 +2,22 @@ import os
 import io
 import json
 from createfile import *
-from flask import Flask, request, abort, jsonify, send_from_directory
+from flask import Flask, render_template,request, abort, jsonify, send_from_directory
 
 app = Flask(__name__)
 
 @app.route("/")
 def landing():
-    return "Hello World"
+    return render_template("index.html")
     
 @app.route("/instapost", methods=["GET"])
 def get_pdf_post():
-    scode = request.args.get('scode')
-    fname = request.args.get('fname')
+    url = request.args.get('PostURL')
+    #scode = request.args.get('Post SCode')
+    fname = request.args.get('FileName')
+    
+    after_p = url[url.find("/p/")+len("/p/"):]
+    scode = after_p.split("/")[0]
     
     with open('old_data.json') as json_file: 
         old_data = json.load(json_file)
